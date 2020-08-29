@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class SampleScript : MonoBehaviour
 {
-    public int IntValue;
-
-    [Button(Name = "Some Method")]
+    [Button]
     public void Method()
     {
         Debug.Log("Message");
     }
 
-    [Button(Name = "Some Method 123")]
+    [Button(Name = "Some Method 1")]
     public void Method1(int number)
     {
         Debug.Log("Message " + number);

@@ -268,6 +268,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IntValue: 0
+  Data:
+    Int: 0
+    Str: fgdgd
+  DataArray:
+  - Int: 86
+    Str: dgd
+  - Int: 0
+    Str: fgdgdfg
 --- !u!4 &1810775008
 Transform:
   m_ObjectHideFlags: 0
