@@ -10,7 +10,7 @@ namespace UniAttributes.Editor
     [CustomEditor(typeof(MonoBehaviour), true)]
     public class UniAttributesInspector : UnityEditor.Editor
     {
-        private IDictionary<ButtonAttribute, MethodInfo> _methods;
+        private IDictionary<MethodInfo, ButtonAttribute> _methods;
 
         private void OnEnable()
         {
@@ -25,7 +25,7 @@ namespace UniAttributes.Editor
             DrawButtons();
         }
 
-        private void LoadMethod(ref IDictionary<ButtonAttribute, MethodInfo> list)
+        private void LoadMethod(ref IDictionary<MethodInfo, ButtonAttribute> list)
         {
             list = ReflectionUtility.GetMethodsWithAttribute<MonoBehaviour, ButtonAttribute>(target as MonoBehaviour);
         }
@@ -34,16 +34,18 @@ namespace UniAttributes.Editor
         {
             foreach (var method in _methods)
             {
-                GUI.enabled = !method.Key.OnlyInPlayMode || EditorApplication.isPlaying;
-                {
-                    GUI.color = method.Key.ButtonColor;
-                    {
-                        var actionName = string.IsNullOrWhiteSpace(method.Key.Name) ? method.Key.Name : method.Value.Name;
+                var isSimpleAction = ReflectionUtility.IsSimpleAction(method.Key);
 
-                        if (GUILayout.Button(actionName))
+                GUI.enabled = (!method.Value.OnlyInPlayMode || EditorApplication.isPlaying) && isSimpleAction;
+                {
+                    GUI.color = isSimpleAction ? Color.white : Color.red;
+                    {
+                        var actionName = string.IsNullOrWhiteSpace(method.Value.Name) ? method.Key.Name : method.Value.Name;
+                        var content = isSimpleAction ? new GUIContent(actionName) : new GUIContent(actionName, "Метод должен иметь сигнатуру делегата Action.");
+
+                        if (GUILayout.Button(content))
                         {
-                            var action = (Action) Delegate.CreateDelegate(typeof(Action), target, method.Value);
-                            action.Invoke();
+                            ReflectionUtility.InvokeSimpleAction(method.Key, target);
                         }
                     }
                     GUI.color = Color.white;
