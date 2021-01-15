@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace UniAttributes.Runtime.Scripts
+namespace UniAttributes.Editor
 {
     public static class ReflectionUtility
     {
