@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UniAttributes.Runtime.Scripts
+namespace UniAttributes
 {
     [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
     public class ButtonAttribute : Attribute
