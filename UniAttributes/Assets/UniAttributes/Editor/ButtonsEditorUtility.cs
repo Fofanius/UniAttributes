@@ -9,31 +9,27 @@ namespace UniAttributes.Editor
         {
             var methods = ReflectionUtility.GetMethodsWithAttribute<MonoBehaviour, ButtonAttribute>(target as MonoBehaviour);
 
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            foreach (var method in methods)
             {
-                foreach (var method in methods)
+                var isSimpleAction = ReflectionUtility.IsSimpleAction(method.Key);
+
+                GUI.enabled = (!method.Value.OnlyInPlayMode || EditorApplication.isPlaying) && isSimpleAction;
                 {
-                    var isSimpleAction = ReflectionUtility.IsSimpleAction(method.Key);
-
-                    GUI.enabled = (!method.Value.OnlyInPlayMode || EditorApplication.isPlaying) && isSimpleAction;
+                    var current = GUI.color;
+                    GUI.color = isSimpleAction ? current : Color.red;
                     {
-                        var current = GUI.color;
-                        GUI.color = isSimpleAction ? current : Color.red;
-                        {
-                            var actionName = string.IsNullOrWhiteSpace(method.Value.Name) ? method.Key.Name : method.Value.Name;
-                            var content = isSimpleAction ? new GUIContent(actionName) : new GUIContent(actionName, "Метод должен иметь сигнатуру делегата Action.");
+                        var actionName = string.IsNullOrWhiteSpace(method.Value.Name) ? method.Key.Name : method.Value.Name;
+                        var content = isSimpleAction ? new GUIContent(actionName) : new GUIContent(actionName, "Method should have signature of Action delegate.");
 
-                            if (GUILayout.Button(content))
-                            {
-                                ReflectionUtility.InvokeSimpleAction(method.Key, target);
-                            }
+                        if (GUILayout.Button(content))
+                        {
+                            ReflectionUtility.InvokeSimpleAction(method.Key, target);
                         }
-                        GUI.color = current;
                     }
-                    GUI.enabled = true;
+                    GUI.color = current;
                 }
+                GUI.enabled = true;
             }
-            EditorGUILayout.EndHorizontal();
         }
     }
 }

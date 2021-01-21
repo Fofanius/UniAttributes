@@ -9,8 +9,6 @@ namespace UniAttributes.Editor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            EditorGUILayout.Space();
-
             ButtonsEditorUtility.DrawButtons(target);
         }
     }
