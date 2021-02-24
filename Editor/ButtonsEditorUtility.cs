@@ -7,11 +7,11 @@ namespace UniAttributes.Editor
     {
         public static void DrawButtons(Object target)
         {
-            var methods = ReflectionUtility.GetMethodsWithAttribute<MonoBehaviour, ButtonAttribute>(target as MonoBehaviour);
+            var methods = ReflectionUtility.GetMethodsWithAttribute<Object, ButtonAttribute>(target);
 
             foreach (var method in methods)
             {
-                var isSimpleAction = ReflectionUtility.IsSimpleAction(method.Key);
+                var isSimpleAction = ReflectionUtility.IsAction(method.Key);
 
                 GUI.enabled = (!method.Value.OnlyInPlayMode || EditorApplication.isPlaying) && isSimpleAction;
                 {
@@ -23,7 +23,7 @@ namespace UniAttributes.Editor
 
                         if (GUILayout.Button(content))
                         {
-                            ReflectionUtility.InvokeSimpleAction(method.Key, target);
+                            ReflectionUtility.InvokeAction(method.Key, target);
                         }
                     }
                     GUI.color = current;

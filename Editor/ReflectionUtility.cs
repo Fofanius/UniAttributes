@@ -32,7 +32,7 @@ namespace UniAttributes.Editor
         /// <param name="methodInfo">Метод для проверки.</param>
         /// <returns>Является ли метод простым.</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static bool IsSimpleAction(MethodInfo methodInfo)
+        public static bool IsAction(MethodInfo methodInfo)
         {
             if (methodInfo == default)
             {
@@ -49,9 +49,9 @@ namespace UniAttributes.Editor
         /// <param name="target">Объект, у которого происходит вызов.</param>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentNullException"></exception>
-        public static void InvokeSimpleAction(MethodInfo methodInfo, object target)
+        public static void InvokeAction(MethodInfo methodInfo, object target)
         {
-            if (!IsSimpleAction(methodInfo))
+            if (!IsAction(methodInfo))
             {
                 throw new ArgumentException(nameof(methodInfo));
             }
