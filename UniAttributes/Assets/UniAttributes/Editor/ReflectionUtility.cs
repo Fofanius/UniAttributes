@@ -8,7 +8,7 @@ namespace UniAttributes.Editor
     {
         public const BindingFlags INSTANCE_FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
-        public static IDictionary<MethodInfo, TAttribute> GetMethodsWithAttribute<TTarget, TAttribute>(TTarget target, Func<MethodInfo, bool> rule = default) where TAttribute : Attribute
+        public static IReadOnlyDictionary<MethodInfo, TAttribute> GetMethodsWithAttribute<TTarget, TAttribute>(TTarget target, Func<MethodInfo, bool> rule = default) where TAttribute : Attribute
         {
             var type = target.GetType();
 
