@@ -2,7 +2,7 @@
 
 ## Docs
 
-[Package documentation.](UniAttributes\Assets\UniAttributes\README.md)
+[Package documentation.](UniAttributes/Assets/UniAttributes/README.md)
 
 ## Install
 
