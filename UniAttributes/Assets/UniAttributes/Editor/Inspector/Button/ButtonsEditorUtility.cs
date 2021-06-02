@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace UniAttributes.Editor
+namespace UniAttributes.Editor.Inspector.Buttons
 {
     public static class ButtonsEditorUtility
     {

@@ -1,7 +1,8 @@
-﻿using UnityEditor;
+﻿using UniAttributes.Editor.Inspector.Buttons;
+using UnityEditor;
 using UnityEngine;
 
-namespace UniAttributes.Editor
+namespace UniAttributes.Editor.Inspector
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(Object), true)]
