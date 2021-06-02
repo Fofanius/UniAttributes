@@ -5,6 +5,12 @@ namespace UniAttributes.Editor
 {
     public static class ButtonsEditorUtility
     {
+        public static void DrawButtons(this UnityEditor.Editor editor)
+        {
+            if (!editor || !editor.target) return;
+            DrawButtons(editor.target);
+        }
+
         public static void DrawButtons(Object target)
         {
             var methods = ReflectionUtility.GetMethodsWithAttribute<Object, ButtonAttribute>(target);
@@ -13,6 +19,7 @@ namespace UniAttributes.Editor
             {
                 var isSimpleAction = ReflectionUtility.IsAction(method.Key);
 
+                var guiState = GUI.enabled;
                 GUI.enabled = (!method.Value.OnlyInPlayMode || EditorApplication.isPlaying) && isSimpleAction;
                 {
                     var current = GUI.color;
@@ -28,7 +35,7 @@ namespace UniAttributes.Editor
                     }
                     GUI.color = current;
                 }
-                GUI.enabled = true;
+                GUI.enabled = guiState;
             }
         }
     }

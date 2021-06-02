@@ -10,6 +10,7 @@ namespace UniAttributes.Editor
 
         public static IReadOnlyDictionary<MethodInfo, TAttribute> GetMethodsWithAttribute<TTarget, TAttribute>(TTarget target, Func<MethodInfo, bool> rule = default) where TAttribute : Attribute
         {
+            if (target == null) throw new ArgumentNullException(nameof(target));
             var type = target.GetType();
 
             var methods = type.GetMethods(INSTANCE_FLAGS);
@@ -47,8 +48,8 @@ namespace UniAttributes.Editor
         /// </summary>
         /// <param name="methodInfo">Метод для вызова.</param>
         /// <param name="target">Объект, у которого происходит вызов.</param>
-        /// <exception cref="ArgumentException"></exception>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"/>
+        /// <exception cref="ArgumentNullException"/>
         public static void InvokeAction(MethodInfo methodInfo, object target)
         {
             if (!IsAction(methodInfo))
@@ -61,8 +62,10 @@ namespace UniAttributes.Editor
                 throw new ArgumentNullException(nameof(target));
             }
 
-            var action = (Action) Delegate.CreateDelegate(typeof(Action), target, methodInfo);
-            action.Invoke();
+            // var action = (Action) Delegate.CreateDelegate(typeof(Action), target, methodInfo);
+            // action.Invoke();
+
+            methodInfo.Invoke(target, null);
         }
     }
 }

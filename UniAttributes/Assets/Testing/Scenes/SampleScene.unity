@@ -235,6 +235,7 @@ MonoBehaviour:
   m_StopNaN: 1
   m_Dithering: 0
   m_ClearDepth: 1
+  m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
@@ -248,6 +249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1810775008}
   - component: {fileID: 1810775007}
+  - component: {fileID: 1810775009}
   m_Layer: 0
   m_Name: Sample
   m_TagString: Untagged
@@ -267,15 +269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9cecca293db46f4aac2a09925a1e987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IntValue: 0
-  Data:
-    Int: 0
-    Str: fgdgd
-  DataArray:
-  - Int: 86
-    Str: dgd
-  - Int: 0
-    Str: fgdgdfg
 --- !u!4 &1810775008
 Transform:
   m_ObjectHideFlags: 0
@@ -290,3 +283,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1810775009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810775006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0962d7b8e5fe25243a3ec18a89e4bce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
