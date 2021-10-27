@@ -1,8 +1,10 @@
 ﻿using UniAttributes;
 using UnityEngine;
 
-public class SampleScript : MonoBehaviour
+public class MethodAttributeTester : MonoBehaviour
 {
+
+
     [Button]
     public void Method()
     {
@@ -14,13 +16,13 @@ public class SampleScript : MonoBehaviour
     {
         Debug.Log("Message " + number);
     }
-    
+
     [Button(Name = "Some Method 2")]
     public int Method2()
     {
         return 47;
     }
-    
+
     [Button]
     private int PrivateMethod()
     {
@@ -28,9 +30,7 @@ public class SampleScript : MonoBehaviour
     }
 
     [Button]
-    protected void ProtectedMethod()
-    {
-    }
+    protected void ProtectedMethod() { }
 
     [Button]
     protected virtual void VirtualMethod()

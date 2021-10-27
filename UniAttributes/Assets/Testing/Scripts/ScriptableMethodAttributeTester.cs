@@ -2,7 +2,7 @@ using UniAttributes;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class SampleScriptableObject : ScriptableObject
+public class ScriptableMethodAttributeTester : ScriptableObject
 {
     [Button]
     public void Log()
